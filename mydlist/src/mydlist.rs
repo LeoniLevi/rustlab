@@ -174,7 +174,7 @@ impl DDLink {
         Self{dl: get_next_dlink(&self.dl)}
     }
 
-    #[allow(dead_code)]
+    //#[allow(dead_code)]
     pub fn get_prev(&self) -> Self {
         Self{dl: get_prev_dlink(&self.dl)}
     }
@@ -212,7 +212,7 @@ pub fn find_dlist_last(dd: &DDLink) -> DDLink {
 
 type DLink = Option<Rc<RefCell<DNode>>>;
 
-#[allow(dead_code)]
+// #[allow(dead_code)]
  struct DNode {
     val: i32,
     next: Option<Rc<RefCell<DNode>>>,
@@ -264,7 +264,7 @@ fn add_dlink_next(dlink: &DLink, next_val: i32) -> DLink {
     return new_dlink;
 }
 
-#[allow(dead_code)]
+//#[allow(dead_code)]
 fn add_dlink_prev(dlink: &DLink, prev_val: i32) -> DLink{
     let new_dlink = create_dlink(prev_val);
     let mut b_node = get_dlink_node(dlink).borrow_mut();
