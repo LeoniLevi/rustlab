@@ -46,16 +46,19 @@ fn test_two() {
     list.push(1); list.push(2); list.push(3);
 
     print!(" ~~ Iter iteration:");
-    let mut iter1 = list.iter();
-    loop {
-        let val = iter1.next();
-        if val.is_none() {
-            break;
-        }
-        print!(" {} ", val.unwrap());
+    for v in list.iter() { print!(" {}", v); } println!();
+    
+    println!(" ~~~~ IterMut operation (with mutation!)");
+    for v in list.iter_mut() {
+        let pv = *v;
+        *v = pv + 1;
+        print!(" {} -> {} ", pv, v);
     }
     println!();
 
+    print!(" ~~ Iter iteration again, after mutation:");
+    for v in list.iter() { print!(" {}", v); } println!();
+    
     print!(" ~~ sequential list pop: ");
     while let Some(val) = list.pop() {
         print!("{val} ");
