@@ -9,6 +9,9 @@ use myrect::*;
 mod mylist;
 use mylist::*;
 
+mod mylist1;
+use mylist1::*;
+
 use std::collections::LinkedList;
 
 fn play_with_std_list()
@@ -190,6 +193,44 @@ fn play_with_dlist() {
     println!(" ~~ play_with_dlist - completed");
 }
 
+fn play_with_list1() {
+    println!(" !! play_with_list1 started..");
+
+    //let mut lst = make_empty_list1();
+    let mut lst = MyList1::new();
+    lst.add(16);
+    lst.add(17);
+    lst.add(18);
+    lst.add(19);
+    
+    list1_add(&mut lst, 2);
+    list1_add(&mut lst, 3);
+    list1_add(&mut lst, 6);
+    list1_add(&mut lst, 7);
+
+    for v in lst.iter() {
+        println!("v={}", v);
+    }
+
+    let mut itr = lst.iter();
+    loop {
+        let ov = itr.next();
+        if ov.is_none() {
+            break;
+        }
+        println!("vv = {}", ov.unwrap());
+    }
+
+    let mut itr1 = lst.iter();
+    let mut ovv = itr1.next();
+    while ovv.is_some() {
+        println!("vvv = {}", ovv.unwrap());
+        ovv = itr1.next()
+    }
+    
+    println!(" !! play_with_list1 - completed");
+}
+
 fn main() {
     println!(" === Program: Started...");
     println!("Hi, what is your name?:");
@@ -210,6 +251,8 @@ fn main() {
     play_with_array();
 
     play_with_std_list();
+
+    play_with_list1();
 
     println!(" === Program: Completed. Bye!")
 }
