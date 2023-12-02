@@ -203,13 +203,14 @@ fn play_with_list1() {
     lst.add(18);
     lst.add(19);
     
-    list1_add(&mut lst, 2);
-    list1_add(&mut lst, 3);
-    list1_add(&mut lst, 6);
-    list1_add(&mut lst, 7);
-
     for v in lst.iter() {
         println!("v={}", v);
+    }
+
+    for v in lst.iter_mut() {
+        let n = *v;
+        *v = n + 10;
+        println!("{} -> {}", n, *v);
     }
 
     let mut itr = lst.iter();
