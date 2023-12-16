@@ -6,11 +6,9 @@ pub struct SNode {
 }
 
 pub fn empty_list() -> Box<MyList> { Box::new(None) }
-	
 
 pub fn add_item(list: Box<MyList>, num: i32) -> Box<MyList> {
-	let node = SNode {val: num, next: list};
-	Box::new(Some(node))
+	Box::new( Some( SNode{ val: num, next: list}))
 }
 
 pub fn vec_to_list(vec: Vec<i32>) -> Box<MyList> {
@@ -21,63 +19,39 @@ pub fn vec_to_list(vec: Vec<i32>) -> Box<MyList> {
 	lst
 }
 
-fn _get_head0(list: &Box<MyList>) -> i32 {
-	match &**list {
-		None => panic!("!!!"),
-		Some(node) => node.val
-	}
-}
-
-fn _get_tail0(list: &Box<MyList>) -> &Box<MyList> {
-	match &**list {
-		None => panic!("!!!"),
-		Some(node) => &node.next
-	}
-}
-
-pub fn get_val_by_idx(list: &Box<MyList>, idx: i32) -> Option<i32> {
+pub fn get_val_by_idx(list: &MyList, idx: i32) -> Option<i32> {
 	let mut lst = list;
 	let mut count = 0;
-	while let Some(node) = (**lst).as_ref() {
+	while let Some(node) = lst {
 		if count == idx {
 			return Some(node.val);
 		}
-		lst = &node.next;
 		count += 1;
+		lst = &node.next;
 	}
 	None
 }
 
-pub fn get_head(list: &Box<MyList>) -> Option<i32> {
-	(**list).as_ref().map(|n| n.val)
+
+pub fn list_len(list: &MyList) -> i32 {
+	if list.is_some() {1 + list_len(get_tail0(list))} else {0}
 }
 
-pub fn get_tail(list: &Box<MyList>) -> Option<&Box<MyList>> {
-	(**list).as_ref().map(|n| &n.next)
-}
-
-pub fn list_len(list: &Box<MyList>) -> i32 {
-	if list.is_none() {
-		return 0;
-	}
-	return 1 + list_len(get_tail(list).unwrap());	
-}
-
-pub fn print_list(list: &Box<MyList>) {
+pub fn print_list(list: &MyList) {
+	println!(" ~~ print_list:");
 	let mut lst = list;
-	while let Some(node) = &**lst {
+	while let Some(node) = lst {
 		print!("{} ", node.val);
-		lst = get_tail(lst).unwrap();
+		lst = get_tail0(lst);
 	}
 	println!();
 }
 
-pub fn get_head0(list: &MyList) -> i32 {
+pub fn get_head(list: &MyList) -> i32 {
 	match list {
 		Some(node) => node.val,
 		_ => panic!("!! get_head0 !!")
 	}
-	//list.unwrap().val 
 }
 pub fn get_tail0(list: &MyList) -> &MyList {
 	match list {
@@ -85,13 +59,13 @@ pub fn get_tail0(list: &MyList) -> &MyList {
 		_ => panic!("!! get_tail0 !!")
 
 	}
-	//&list.unwrap().next
 }
 
 pub fn print_list0(list: &MyList) {
+	println!(" ~~ print_list0:");
 	let mut lst = list;
 	while lst.is_some() {
-		let n = get_head0(lst);
+		let n = get_head(lst);
 		print!("{}", n);
 		lst = get_tail0(lst);
 		if lst.is_none() {
@@ -103,15 +77,18 @@ pub fn print_list0(list: &MyList) {
 }
 
 pub fn print_list1(list: &MyList) {
-	if list.is_none() {
-		return;
-	}
-	let n = get_head0(list);
-	let t = get_tail0(list);
-	print_list1(t);
-	if t.is_some() {
-		print!(",");
-	}
-	print!("{}", n);
-
+	println!(" ~~ print_list1:");
+	list.as_ref().map(|n| {
+		prn_lst(n);
+	});
 }
+
+fn prn_lst(node: &SNode) {
+	print!("{}", node.val);
+	let next_node = node.next.as_ref();
+	next_node.as_ref().map(|n| {
+		print!(",");
+		prn_lst(n);
+	});
+}
+
