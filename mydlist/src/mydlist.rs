@@ -52,13 +52,19 @@ impl<'a> DDListIter<'a> {
 impl<'a> Iterator for DDListIter<'a> {
     type Item = i32;
     fn next(&mut self) -> Option<Self::Item> {    
-        let dnext;
+        let dnext = if self.fcur.is_empty() {
+            self.lst.first.clone()
+        } else {
+            self.fcur.get_next()
+        };
+        /*
         if self.fcur.is_empty() {
             dnext = self.lst.first.clone();
         }
         else {
             dnext = self.fcur.get_next();
         }
+        */
         if dnext.is_empty() || dnext.is_eqv(&self.bcur) {
             return None;
         }
@@ -116,6 +122,7 @@ impl IntoIterator for DDList {
     }
 }
 
+// DDLink - just 'object' envelope for DLink, but with its own methods defined
 pub struct DDLink {
     dl: DLink
 }

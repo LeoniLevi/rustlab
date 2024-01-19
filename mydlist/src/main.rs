@@ -234,13 +234,44 @@ fn play_with_list1() {
 
 fn main() {
     println!(" === Program: Started...");
-    println!("Hi, what is your name?:");
-    let mut sbuf = String::new();
-    std::io::stdin().read_line(&mut sbuf).unwrap();
-    println!("Hello, {} !!", sbuf.trim_end());
-    let i: i32 = rand::random();
-    println!("The random i32 is {}", i);
-    
+    let i: i8 = rand::random();
+    println!("The random i8 is {}", i);
+
+    loop {
+        println!("\n ---------------------------------------");
+        println!(" ~~ Here are your options: "); 
+        println!(" 0. EXIT");
+        println!(" 1. play List (singly linked list)");
+        println!(" 2. play List1 (singly linked list with methods)");
+        println!(" 3. play DList (doubly linked list)");
+        println!(" 4. play DDList (doubly linked list with methods)");
+        println!(" 5. play StdList (standard library list)");
+        println!(" 6. play Array");
+        println!(" 7. draw Rect");
+        println!(" ~~ Make your choice(0 - 7): ");
+
+        let mut sbuf = String::new();
+        std::io::stdin().read_line(&mut sbuf).unwrap();
+        let schoice = sbuf.trim_end();
+        let choice : i32 = schoice.parse().unwrap();
+        println!("Chosen: {}", choice); 
+
+        println!(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        match choice {
+            0 => println!(" ~~ EXIT is chosen!"),
+            1 => play_with_list(),
+            2 => play_with_list1(),
+            3 => play_with_dlist(),
+            4 => play_with_ddlist(),
+            5 => play_with_std_list(),
+            6 => play_with_array(),
+            7 => draw_rect(10),
+            _ => println!(" Choice is unknown!")
+        }
+        if choice == 0 { break; }
+    }
+
+/*
 	play_with_list();
 	draw_rect(8);
 	//draw_rect(12);
@@ -254,6 +285,6 @@ fn main() {
     play_with_std_list();
 
     play_with_list1();
-
-    println!(" === Program: Completed. Bye!")
+*/
+    println!("\n === Program: Completed. Bye!")
 }
