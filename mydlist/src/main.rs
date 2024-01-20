@@ -24,6 +24,7 @@ fn play_with_std_list()
     list.push_back(4);
 
     let mut itr = list.iter();
+
     let mut val = itr.next().unwrap();
     println!(" ~~ itr.next={}", val);
 
@@ -202,32 +203,40 @@ fn play_with_list1() {
     lst.add(17);
     lst.add(18);
     lst.add(19);
-    
-    for v in lst.iter() {
-        println!("v={}", v);
-    }
 
+    println!(" ~~ simple iteration:"); 
+    for v in lst.iter() {
+        print!("{} ", v);
+    }
+    println!();
+
+    println!(" ~~ simple iteration with mutation:"); 
     for v in lst.iter_mut() {
         let n = *v;
         *v = n + 10;
-        println!("{} -> {}", n, *v);
+        print!("{}->{}, ", n, *v);
     }
+    println!();
 
+    println!("~~ loop iteration:");
     let mut itr = lst.iter();
     loop {
         let ov = itr.next();
         if ov.is_none() {
             break;
         }
-        println!("vv = {}", ov.unwrap());
+        print!("vv={}, ", ov.unwrap());
     }
+    println!();
 
+    println!(" ~~ while-loop iteration");
     let mut itr1 = lst.iter();
     let mut ovv = itr1.next();
     while ovv.is_some() {
-        println!("vvv = {}", ovv.unwrap());
+        print!("vvv={}, ", ovv.unwrap());
         ovv = itr1.next()
     }
+    println!();
     
     println!(" !! play_with_list1 - completed");
 }
