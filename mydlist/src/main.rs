@@ -11,8 +11,8 @@ use mylist::*;
 
 mod mylist1;
 use mylist1::*;
-
 use std::collections::LinkedList;
+
 
 fn play_with_std_list()
 {
@@ -232,11 +232,29 @@ fn play_with_list1() {
     println!(" !! play_with_list1 - completed");
 }
 
+fn reverse_str(src : &str) -> String {
+    let chars = src.chars();
+    //let num_chars = chars.len();
+    let mut dest = String::new();
+    for c in chars.rev() {
+        dest.push(c);
+    }
+    dest
+}
+
 fn main() {
     println!(" === Program: Started...");
-    let i: i8 = rand::random();
-    println!("The random i8 is {}", i);
+    let i: u8 = rand::random();
+    println!(" ~~ Testing random: random u8 is {}", i);
+    println!(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
+    println!(" ~~ Testing reverse_str function:");
+    let s0 = "Paracetamol is a very useful medicine for any case";
+    let s1 = reverse_str(s0);
+    println!("Source string: '{}'", s0); 
+    println!("Reversed string: '{}'", s1); 
+    println!(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    
     loop {
         println!("\n ---------------------------------------");
         println!(" ~~ Here are your options: "); 
@@ -253,6 +271,9 @@ fn main() {
         let mut sbuf = String::new();
         std::io::stdin().read_line(&mut sbuf).unwrap();
         let schoice = sbuf.trim_end();
+        if schoice.is_empty() {
+            break;
+        }
         let choice : i32 = schoice.parse().unwrap();
         println!("Chosen: {}", choice); 
 
