@@ -21,20 +21,6 @@ pub fn vec_to_list(vec: Vec<i32>) -> Box<MyList> {
 	lst
 }
 
-fn _get_head0(list: &Box<MyList>) -> i32 {
-	match &**list {
-		None => panic!("!!!"),
-		Some(node) => node.val
-	}
-}
-
-fn _get_tail0(list: &Box<MyList>) -> &Box<MyList> {
-	match &**list {
-		None => panic!("!!!"),
-		Some(node) => &node.next
-	}
-}
-
 pub fn get_val_by_idx(list: &Box<MyList>, idx: i32) -> Option<i32> {
 	let mut lst = list;
 	let mut count = 0;
@@ -92,6 +78,7 @@ pub fn get_tail0(list: &MyList) -> &MyList {
 	}
 	//&list.unwrap().next
 }
+
 
 pub fn print_list0(list: &MyList) {
 	let mut lst = list;

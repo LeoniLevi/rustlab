@@ -138,7 +138,7 @@ fn play_with_array() {
 }
 
 fn play_with_mylist() {
-	let nums = vec!(22, 33, 44, 55, 66);
+    let nums = vec!(22, 33, 44, 55, 66);
     let lst = mylist::vec_to_list(nums);
     
     let len = mylist::list_len(&lst);
@@ -148,7 +148,7 @@ fn play_with_mylist() {
     println!(" ~~ list[1] = {v}");
     
     println!(" ~~ list:");
-	mylist::print_list0(&lst);
+    mylist::print_list0(&lst);
     mylist::print_list(&lst);
     
     println!(" ~~ tail(list) [aca CDR]:");
@@ -156,7 +156,7 @@ fn play_with_mylist() {
     mylist::print_list(&tlist);
 
     println!(" ~~ reversed list:");
-	mylist::print_rev_list0(&lst);
+    mylist::print_rev_list0(&lst);
 }
 
 fn play_with_ddlist() {
@@ -305,7 +305,6 @@ fn test_reverse_str() {
     assert_eq!(rs, "sarroC");
 }
 
-//#[cfg(test)]
 #[test]
 fn test_std_list()
 {
