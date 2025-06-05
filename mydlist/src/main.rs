@@ -68,6 +68,7 @@ fn main() {
 
 fn play_with_std_list()
 {
+    println!(" ==== play_with_std_list started...");
     let mut list: LinkedList<u32> = LinkedList::new();
 
     list.push_back(9);
@@ -82,6 +83,19 @@ fn play_with_std_list()
 
     val = itr.next().unwrap();
     println!(" ~~ itr.next={}", val);
+
+    print!(" ~~ Iterated List: [");
+    let mut itr1 = list.iter();
+    loop {
+        let next = itr1.next();
+        if next.is_none() {
+            break;
+        }
+            
+        val = next.unwrap();
+        print!(" {} ", val);
+    }
+    println!("]");
 
     let mut ritr = list.iter().rev();
     val = ritr.next().unwrap();
@@ -98,7 +112,7 @@ fn play_with_std_list()
 
 
 
-    println!(" ~~ play_with_std_list - completed");
+    println!(" ==== play_with_std_list - completed");
 }
 
 fn play_with_array() {
