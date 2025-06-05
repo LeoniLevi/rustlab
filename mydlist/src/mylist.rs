@@ -24,7 +24,8 @@ pub fn vec_to_list(vec: Vec<i32>) -> Box<MyList> {
 pub fn get_val_by_idx(list: &Box<MyList>, idx: i32) -> Option<i32> {
 	let mut lst = list;
 	let mut count = 0;
-	while let Some(node) = (**lst).as_ref() {
+	//while let Some(node) = (**lst).as_ref() {
+	while let Some(node) = lst.as_ref() {
 		if count == idx {
 			return Some(node.val);
 		}

@@ -160,6 +160,8 @@ fn play_with_mylist() {
     println!(" ~~ list: len={}, head={}", len, head);
     let v = mylist::get_val_by_idx(&lst, 1).unwrap();
     println!(" ~~ list[1] = {v}");
+    let v = mylist::get_val_by_idx(&lst, 4).unwrap();
+    println!(" ~~ list[4] = {v}");
     
     println!(" ~~ list:");
     mylist::print_list0(&lst);
