@@ -18,10 +18,16 @@ pub fn draw_rect(sz: u32) {
 	println!("matrix: {:?}", mx);
 	println!("transposed: {:?}", rev_mx);
 
-	let mut arr  = [5,2,9,1,6,3, 57, -23, 45, 22, 3, -7, 99];
+	//let mut arr  = [5,2,9,1,6,3, 57, -23, 45, 22, 3, -7, 99];
+	let mut arr : [i32; 13] = [5,2,9,1,6,3, 57, -23, 45, 22, 3, -7, 99];
 	println!("array: {:?}", arr);
 	bubble_sort(&mut arr);
 	println!("array after bubble_sort: {:?}", arr);
+
+	let mut arr1 : [i32; 6] = [15,23,91,13,16,3];
+	println!("array: {:?}", arr1);
+	selection_sort(&mut arr1);
+	println!("array after bubble_sort: {:?}", arr1);
 
 
 
@@ -67,12 +73,21 @@ pub fn bubble_sort(arr: &mut[i32]) {
 	while len > 1 {
 		for i in 0..len-1 {
 			if arr[i] > arr[i+1] {
-				//arr[i], arr[j+1] = arr[j+1], arr[i];
-				let tmp = arr[i];
-				arr[i] = arr[i+1];
-				arr[i+1] = tmp;
+				(arr[i], arr[i+1]) = (arr[i+1], arr[i]);
 			}
 		}
 		len -= 1;
 	}	
+}
+
+pub fn selection_sort(arr: &mut[i32]) {
+	let len = arr.len();
+	for i0 in 0..len {
+		//let mut val = arr[i0];
+		for i in i0+1..len {
+			if arr[i] < arr[i0] {
+				(arr[i0], arr[i]) = (arr[i], arr[i0])
+			}
+		}
+	}
 }
