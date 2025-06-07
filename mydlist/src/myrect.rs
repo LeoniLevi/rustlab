@@ -7,6 +7,8 @@ pub fn draw_rect(sz: u32) {
 	let normalized = normalize(&pnt);
 	println!("normalized: {:?}", normalized);
 
+	
+
 	let mx : [[f32; 3]; 3] = [
 		[1.0, 1.0, 1.0],
 		[2.0, 2.0, 2.0],
@@ -15,6 +17,14 @@ pub fn draw_rect(sz: u32) {
 	let rev_mx = transpose(&mx);
 	println!("matrix: {:?}", mx);
 	println!("transposed: {:?}", rev_mx);
+
+	let mut arr  = [5,2,9,1,6,3, 57, -23, 45, 22, 3, -7, 99];
+	println!("array: {:?}", arr);
+	bubble_sort(&mut arr);
+	println!("array after bubble_sort: {:?}", arr);
+
+
+
 
 	for i in 0 .. sz {
 		for j in 0 .. sz {
@@ -48,4 +58,21 @@ pub fn transpose(mx: &[[f32; 3]; 3]) -> [[f32; 3]; 3] {
 		}
 	}
 	m
+}
+
+//------------------
+
+pub fn bubble_sort(arr: &mut[i32]) {
+	let mut len = arr.len();
+	while len > 1 {
+		for i in 0..len-1 {
+			if arr[i] > arr[i+1] {
+				//arr[i], arr[j+1] = arr[j+1], arr[i];
+				let tmp = arr[i];
+				arr[i] = arr[i+1];
+				arr[i+1] = tmp;
+			}
+		}
+		len -= 1;
+	}	
 }
